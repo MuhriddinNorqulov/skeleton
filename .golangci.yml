@@ -1,0 +1,70 @@
+version: "2"
+
+linters:
+  default: none
+  enable:
+    - depguard
+    - errcheck
+    - govet
+    - staticcheck
+    - ineffassign
+    - unused
+    - contextcheck
+    - bodyclose
+    - sqlclosecheck
+
+  settings:
+    staticcheck:
+      checks:
+        - "all"
+        - "-ST1006"
+        - "-ST1003"
+        - "-ST1000"
+        - "-ST1020"
+
+    depguard:
+      rules:
+        # Domain layer: faqat stdlib + uuid ruxsat etilgan
+        domain-layer:
+          list-mode: strict
+          files:
+            - "**/src/core/domain/**"
+          allow:
+            - "$gostd"
+            - "github.com/google/uuid"
+            - "example.com/PROJECT_NAME/src/core/domain/"
+          deny:
+            - pkg: "net/http"
+              desc: "Domain must not depend on net/http; define a port interface"
+            - pkg: "net/http/"
+              desc: "Domain must not depend on net/http; define a port interface"
+            - pkg: "database/sql"
+              desc: "Domain must not depend on database/sql"
+            - pkg: "database/sql/"
+              desc: "Domain must not depend on database/sql"
+
+        # Application layer: GORM va Echo taqiqlangan
+        application-layer:
+          list-mode: lax
+          files:
+            - "**/src/core/application/**"
+          deny:
+            - pkg: "gorm.io/"
+              desc: "Application layer must not import GORM; use repository ports"
+            - pkg: "github.com/labstack/echo/"
+              desc: "Application layer must not import Echo; use httpport ports"
+
+        # Core -> infrastructure/entrypoint import taqiqlangan
+        core-boundary:
+          list-mode: lax
+          files:
+            - "**/src/core/**"
+          deny:
+            - pkg: "example.com/PROJECT_NAME/src/infrastructure"
+              desc: "Core must not import infrastructure; depend on domain ports"
+            - pkg: "example.com/PROJECT_NAME/src/infrastructure/"
+              desc: "Core must not import infrastructure; depend on domain ports"
+            - pkg: "example.com/PROJECT_NAME/src/entrypoint"
+              desc: "Core must not import entrypoint layer"
+            - pkg: "example.com/PROJECT_NAME/src/entrypoint/"
+              desc: "Core must not import entrypoint layer"

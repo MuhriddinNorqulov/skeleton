@@ -1,0 +1,24 @@
+package mapper
+
+import (
+	"context"
+	"example.com/PROJECT_NAME/src/core/domain/ports/async"
+
+	"github.com/hibiken/asynq"
+)
+
+type asynqTaskAdapter struct {
+	handler async.AsyncTaskHandler
+}
+
+func ToAsynQTask(handler async.AsyncTaskHandler) *asynqTaskAdapter {
+	return &asynqTaskAdapter{handler: handler}
+}
+
+func (this *asynqTaskAdapter) ProcessTask(ctx context.Context, t *asynq.Task) error {
+	task := &async.Task{
+		TaskType: "",
+		Payload:  t.Payload(),
+	}
+	return this.handler.ProcessTask(ctx, task)
+}
