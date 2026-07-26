@@ -39,9 +39,9 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |   +-- core/                               # Biznes yadrosi - tashqi bog'liqliklardan xoli
 |   |   +-- domain/
 |   |   |   +-- entity/                     # Sof entity'lar, infrastructure importlarsiz
-|   |   |   |   +-- <entity>_entity.go      # Entity strukturasi (UserEntity, DocumentEntity, ...)
+|   |   |   |   +-- <entity>_entity.go      # Entity strukturasi (UserEntity, EntityNameEntity, ...)
 |   |   |   |   +-- enum/                   # Enum konstantalar (status, type, ...)
-|   |   |   |       +-- <name>.go           # Enum type va konstantalar (Service, TokenType, ...)
+|   |   |   |       +-- <name>.go           # Enum type va konstantalar (EntityStatus, TokenType, ...)
 |   |   |   +-- ports/                      # Faqat interfeyslar - domain + stdlib ga bog'liq
 |   |   |       +-- repository/             # DB repository interfeyslari
 |   |   |       |   +-- <entity>_repository.go
@@ -84,9 +84,6 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |   |   |       |   +-- pdf.go             # PdfService interface
 |   |   |       |   +-- html2pdf.go        # Html2Pdf interface
 |   |   |       |   +-- html_renderer.go    # HtmlRenderer interface
-|   |   |       |   +-- libreoffice.go     # LibreOffice interface
-|   |   |       |   +-- pdf_highlighter.go  # PdfHighlighter interface
-|   |   |       |   +-- qrcode_provider.go  # QrCodeProvider interface
 |   |   |       |   +-- stream.go          # Stream struct
 |   |   |       +-- config/                 # Konfiguratsiya portlari
 |   |   |       |   +-- config_provider.go  # ConfigProvider interface
@@ -97,15 +94,10 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |   |   |
 |   |   +-- application/                    # Use case'lar va servislar
 |   |   |   +-- usecases/                   # Modul bo'yicha guruhlangan use case'lar
-|   |   |   |   +-- authusecases/           # Auth use case'lari
-|   |   |   |   |   +-- user_create_usecase.go        # [CANONICAL EXAMPLE]
-|   |   |   |   |   +-- send_login_otp_usecase.go
-|   |   |   |   |   +-- verify_login_otp_usecase.go
-|   |   |   |   |   +-- ...
 |   |   |   |   +-- <module>usecases/       # Har bir modul uchun alohida papka
 |   |   |   |       +-- <action>_usecase.go
 |   |   |   +-- services/                   # Qayta ishlatiladigan servislar
-|   |   |   |   +-- <name>_service.go       # (payment_service, otp_service, ...)
+|   |   |   |   +-- <name>_service.go       # (payment_service, entity_service, ...)
 |   |   |   +-- tasks/                      # Async task definitsiyalari
 |   |   |   |   +-- <name>_task.go          # Task publisher wrapper
 |   |   |   +-- response/                   # Standart response tuzilmalari
@@ -117,35 +109,33 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |   |   |
 |   |   +-- utils/                          # Yordamchi funksiyalar
 |   |       +-- caller.go                   # CallerPath - xato joylashuvini aniqlash
+|   |       +-- closer.go                   # Closer helper
 |   |       +-- json.go                     # JSON marshal/unmarshal helper'lar
-|   |       +-- strings.go                  # String utility'lar
-|   |       +-- ...
 |   |
 |   +-- entrypoint/                         # Kirish nuqtalari - handler'lar
 |   |   +-- http/
 |   |   |   +-- app.go                      # HTTP App - server, middleware, group'larni birlashtiradi
 |   |   |   +-- groups/                     # Route group'lar
-|   |   |   |   +-- <module>_group.go       # Modul routelarini ro'yxatdan o'tkazadi
+|   |   |   |   +-- <module>_group.go       # Modul routelarini ro'yxatdan o'tkazadi (entity, health, ws)
 |   |   |   +-- handlers/                   # HTTP handler'lar
 |   |   |   |   +-- <module>/
 |   |   |   |   |   +-- <action>_handler.go # Bitta handler = bitta endpoint
+|   |   |   |   +-- health/                 # Health check handler
+|   |   |   |   |   +-- health_handler.go   # GET /api/v1/health
 |   |   |   |   +-- ws/                     # WebSocket handler'lar
 |   |   |   |       +-- <name>_ws_handler.go
 |   |   |   +-- interceptor/               # Middleware'lar
 |   |   |       +-- middlewares/            # HTTP middleware'lar
 |   |   |       |   +-- jwt_auth_middleware.go
 |   |   |       |   +-- response_middleware.go
-|   |   |       |   +-- payme_auth_middleware.go
-|   |   |       |   +-- ...
 |   |   |       +-- permissions/            # Permission tekshiruvlari
 |   |   |       |   +-- authenticated_user_permission.go
 |   |   |       +-- wsmiddlewares/          # WebSocket middleware'lar
-|   |   |           +-- idle_timeout_middleware.go
 |   |   +-- asynctask/
 |   |       +-- app.go                      # Async App - server, handler'larni birlashtiradi
 |   |       +-- handlers/                   # Async task handler'lar
 |   |       |   +-- <task_name>_handler.go
-|   |       +-- middleware/                 # Async middleware'lar (hozircha bo'sh)
+|   |       +-- middleware/                 # Async middleware'lar
 |   |
 |   +-- infrastructure/                     # Tashqi dunyo adapterlari
 |       +-- env/
@@ -169,6 +159,7 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |       |   |   +-- chttp_client.go         # Custom HTTP client (logging bilan)
 |       |   |   +-- multipart.go            # Multipart helper
 |       |   |   +-- basic_auth.go           # Basic auth helper
+|       |   |   +-- client_ext.go           # Client extension helper'lar
 |       |   +-- <name>_gateway_impl.go      # Gateway implementatsiyalari
 |       |   +-- response/                   # Gateway response struct'lari
 |       |   +-- mapper/                     # Gateway mapper'lar
@@ -181,7 +172,13 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |       |   |   +-- context_middleware.go    # Echo Context -> custom Context
 |       |   |   +-- request_validator.go    # Validator implementatsiyasi
 |       |   |   +-- recovery_middleware.go
-|       |   |   +-- handlers/              # Dev handler'lar (swagger, asynqmon)
+|       |   |   +-- http_logger_middleware.go    # HTTP request/response logging
+|       |   |   +-- console_logger_middleware.go # Console output middleware
+|       |   |   +-- development_group.go    # /dev route'larni ro'yxatdan o'tkazadi (docs, asynqmon)
+|       |   |   +-- developer_basic_auth_middleware.go  # /dev route'lar uchun Basic Auth
+|       |   |   +-- handlers/              # Dev handler'lar
+|       |   |       +-- docs_handler.go     # Swagger UI handler
+|       |   |       +-- asynqmon_handler.go # Asynq monitoring UI handler
 |       |   +-- mapper/
 |       |   |   +-- echo_mapper.go          # httpport <-> echo mapper'lar
 |       |   +-- requestimpl/
@@ -207,6 +204,7 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |       |   +-- middlewares/              # WS middleware'lar (logging, recovery)
 |       +-- security/                      # Auth/crypto adapterlari
 |       |   +-- jwt_token_adapter.go       # JwtTokenProvider implementatsiyasi
+|       |   +-- jwt_token_claim.go         # JWT token claim struct
 |       |   +-- bcrypt_adapter.go          # PasswordHasher implementatsiyasi
 |       +-- storage/                       # Fayl saqlash
 |       |   +-- local_file_storage.go      # FileStorage implementatsiyasi
@@ -218,15 +216,15 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |       |   +-- gateway_logger.go          # Gateway loglar
 |       |   +-- daily_file_logger.go       # Daily rotation file logger
 |       +-- file/                          # Fayl utility adapterlari
-|       |   +-- pdf_cpu_adapter.go         # PdfService implementatsiyasi
 |       |   +-- html_renderer_impl.go      # HtmlRenderer implementatsiyasi
-|       |   +-- qrcode_adapter.go          # QrCodeProvider implementatsiyasi
 |       +-- payment/                       # To'lov adapterlari
 |       |   +-- payment_adapter.go         # PaymentProvider implementatsiyasi
 |       +-- _errors/                       # Infrastructure error helper'lar
 |       |   +-- gorm_errors.go             # GORM xatolarini SafeError'ga o'rash
 |       +-- docs/                          # [AUTO-GENERATED] Swagger hujjatlari
 |           +-- docs.go
+|           +-- swagger.json
+|           +-- swagger.yaml
 |
 +-- .wire/
 |   +-- wire.go                             # Wire injector funksiyalari
@@ -241,15 +239,11 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 |
 +-- docker/
 |   +-- Dockerfile                          # Multi-stage Go build
-|   +-- Makefile                            # Docker buyruqlari (docker-run.build, docker-run.dev, docker-run.local)
 |   +-- docker-compose.local.yml            # PostgreSQL + Redis lokal muhit
-|   +-- docker-compose.build.yml            # Production build compose
-|   +-- docker-compose.dev.yml              # Development compose
 |
-+-- env/
-|   +-- .env                                # Asosiy muhit o'zgaruvchilar
-|   +-- .env.local                          # Lokal override'lar
-|
++-- .env                                    # Asosiy muhit o'zgaruvchilar (gitignore'd)
++-- .env.local                              # Lokal override'lar (gitignore'd)
++-- .env.example                            # Namuna env fayl
 +-- assets/                                 # Statik fayllar (HTML template, rasm, ...)
 +-- storage/                                # Runtime saqlash (gitignore'd)
 +-- logs/                                   # Log fayllari (gitignore'd)
@@ -883,7 +877,7 @@ Channel-based routing, connection pooling, reconnect logikasi.
 - `env.Env` struct — barcha env o'zgaruvchilar `env:"TAG"` bilan
 - `config.ConfigProvider` — adapter orqali faqat kerakli konfiguratsiyalarni beradi
 - Konteyner rejimda `.env` yuklanmaydi (`CONTAINER_MODE=1`)
-- Lokal rejimda `env/.env.local` ustunlik qiladi (godotenv load tartibi)
+- Lokal rejimda `.env.local` ustunlik qiladi (godotenv load tartibi)
 
 ---
 
@@ -1031,7 +1025,7 @@ sequenceDiagram
     participant Handler as WS Handler
     participant UC as Use Case
 
-    Client->>Echo: GET /api/v1/ws/ai-detect (Upgrade)
+    Client->>Echo: GET /api/v1/ws/example (Upgrade)
     Echo->>WsImpl: Upgrade(channel) -> UpgradeFunc(w, r)
     WsImpl->>Upgrader: Upgrade(w, r) -> *websocket.Conn
     WsImpl->>Store: Add(connection)
@@ -1054,6 +1048,24 @@ sequenceDiagram
     Consumer-->>Store: Remove(connID)
 ```
 
+### 4.5 Development Endpoints
+
+Server `Init()` da `/dev` group'i ro'yxatdan o'tkaziladi va `DeveloperBasicAuthMiddleware`
+bilan himoyalanadi (env-based `DEV_USERNAME`/`DEV_PASSWORD`).
+
+**Mavjud dev endpoint'lar:**
+
+| Endpoint | Vazifasi |
+|----------|----------|
+| `GET /dev/docs/*` | Swagger UI (API hujjatlari) |
+| `ANY /dev/monitoring/tasks/*` | Asynqmon dashboard (Redis task queue monitoring) |
+
+**Arxitektura:**
+- `DevelopmentGroup` (`defaults/development_group.go`) — route'larni ro'yxatdan o'tkazadi
+- `DeveloperBasicAuthMiddleware` (`defaults/developer_basic_auth_middleware.go`) — env-based basic auth
+- `handlers/docs_handler.go` — Swagger UI, `X-Forwarded-Host` orqali host dinamik aniqlanadi
+- `handlers/asynqmon_handler.go` — `asynqmon.HTTPHandler` yaratadi, Redis'ga ulanadi
+
 ---
 
 ## 5. Cross-cutting Conventions
@@ -1068,13 +1080,15 @@ Lokal rejimda `godotenv` yordamida `.env` fayllardan o'qiladi.
 type Env struct {
     DBHost string `env:"DB_HOST,required"`
     // ...
+    DevUsername string `env:"DEV_USERNAME" envDefault:"admin"`
+    DevPassword string `env:"DEV_PASSWORD" envDefault:"admin"`
 }
 
 // Konteynerda .env yuklanmaydi
 func loadEnv() {
     if os.Getenv("CONTAINER_MODE") != "1" {
-        _ = godotenv.Load("env/.env.local")  // birinchi
-        _ = godotenv.Load("env/.env")         // keyin (override qilinmaydi)
+        _ = godotenv.Load(".env.local")  // birinchi
+        _ = godotenv.Load(".env")         // keyin (override qilinmaydi)
     }
 }
 ```
@@ -1173,7 +1187,7 @@ Loyihada hozircha testlar mavjud emas. Lekin arxitektura test yozishga tayyor:
 
 ### 5.8 Makefile'lar
 
-Loyihada 3 ta Makefile mavjud, har biri o'z sohasiga mas'ul:
+Loyihada 2 ta Makefile mavjud, har biri o'z sohasiga mas'ul:
 
 **Root `Makefile`** — asosiy build buyruqlari:
 
@@ -1182,14 +1196,6 @@ Loyihada 3 ta Makefile mavjud, har biri o'z sohasiga mas'ul:
 | `generate-docs` | Swagger hujjatlarni `swag init` orqali generatsiya qiladi |
 | `wire-build` | `wiregenx` + `wire` orqali DI konteyner yaratadi |
 | `docker-run.local` | Lokal Docker muhitni ishga tushiradi |
-
-**`docker/Makefile`** — Docker muhit buyruqlari:
-
-| Target | Vazifasi |
-|--------|----------|
-| `docker-run.build` | Production build compose'ni ishga tushiradi |
-| `docker-run.dev` | Development compose'ni ishga tushiradi |
-| `docker-run.local` | Lokal compose'ni ishga tushiradi (PostgreSQL + Redis) |
 
 **`migration/makemigration`** — Atlas migratsiya buyruqlari:
 
@@ -1284,7 +1290,7 @@ Loyihada 3 ta Makefile mavjud, har biri o'z sohasiga mas'ul:
 
 1. **Port yaratish** — `src/core/domain/ports/gateway/<name>_gateway.go`
 2. **Implementatsiya** — `src/infrastructure/gateway/<name>_gateway_impl.go`
-3. **Env** — `env/env.go` ga yangi env o'zgaruvchilar
+3. **Env** — `src/infrastructure/env/env.go` ga yangi env o'zgaruvchilar
 4. **Config** — Kerak bo'lsa `config_adapter.go` ga yangi metodlar
 
 ---
@@ -1331,7 +1337,6 @@ Loyihada 3 ta Makefile mavjud, har biri o'z sohasiga mas'ul:
 
 ### Makefile'lar
 - Root `Makefile` — `generate-docs`, `wire-build`, `docker-run.local`
-- `docker/Makefile` — `docker-run.build`, `docker-run.dev`, `docker-run.local`
 - `migration/makemigration` — `db-diff-dev`, `db-diff-prod`, `migrate-hash`
 
 ### Linting
