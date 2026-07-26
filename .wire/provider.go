@@ -11,6 +11,7 @@ import (
 	http "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http"
 	groups "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/groups"
 	entity "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers/entity"
+	health "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers/health"
 	ws "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers/ws"
 	middlewares "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/interceptor/middlewares"
 	asyncq "github.com/muhriddinnorqulov/skeleton/src/infrastructure/asyncq"
@@ -41,8 +42,10 @@ var ProviderSet = wire.NewSet(
 	handlers.NewProcessEntityHandler,
 	http.NewApp,
 	groups.NewEntityGroup,
+	groups.NewHealthGroup,
 	groups.NewWsGroup,
 	entity.NewCreateEntityHandler,
+	health.NewHealthHandler,
 	ws.NewExampleWsHandler,
 	middlewares.NewJwtAuthMiddleware,
 	middlewares.NewResponseMiddleware,

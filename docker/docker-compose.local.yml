@@ -2,7 +2,7 @@ services:
 
   skeleton-postgres:
     image: postgres:17
-    container_name: PROJECT_NAME-postgres
+    container_name: skeleton-postgres
     ports:
       - "5432:5432"
     env_file:

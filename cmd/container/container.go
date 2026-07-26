@@ -13,6 +13,7 @@ import (
 	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http"
 	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/groups"
 	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers/entity"
+	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers/health"
 	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers/ws"
 	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/interceptor/middlewares"
 	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/asyncq"
@@ -65,7 +66,9 @@ func InitHttpApp() *http.App {
 	wsportWs := gorillaws.NewWsImpl(gorillaUpgrader, dialer, connectionStore, mux, consumer, wsLogger, loggingMiddleware, recovererMiddleware)
 	exampleWsHandler := ws.NewExampleWsHandler()
 	wsGroup := groups.NewWsGroup(wsportWs, exampleWsHandler)
-	app := http.NewApp(httpServer, envEnv, jwtAuthMiddleware, responseMiddleware, entityGroup, wsGroup, wsportWs)
+	healthHandler := health.NewHealthHandler()
+	healthGroup := groups.NewHealthGroup(healthHandler)
+	app := http.NewApp(httpServer, envEnv, jwtAuthMiddleware, responseMiddleware, entityGroup, wsGroup, healthGroup, wsportWs)
 	return app
 }
 

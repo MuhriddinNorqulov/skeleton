@@ -551,6 +551,13 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/../hikiweb/src/core/domain/ports/httpport/group.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1785060998053" />
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/cmd/async/main.go">
           <value>
             <ScannedPath>

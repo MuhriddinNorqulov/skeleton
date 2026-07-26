@@ -84,6 +84,18 @@ paths:
       summary: Create entity
       tags:
       - Entity
+  /v1/health:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Health check
+      tags:
+      - Health
 securityDefinitions:
   BasicAuth:
     type: basic

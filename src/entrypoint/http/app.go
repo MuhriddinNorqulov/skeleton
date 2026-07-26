@@ -17,6 +17,7 @@ type App struct {
 
 	entityGroup *groups.EntityGroup
 	wsGroup     *groups.WsGroup
+	healthGroup *groups.HealthGroup
 
 	ws wsport.Ws
 }
@@ -29,6 +30,7 @@ func NewApp(
 	responseMiddleware *middlewares.ResponseMiddleware,
 	entityGroup *groups.EntityGroup,
 	wsGroup *groups.WsGroup,
+	healthGroup *groups.HealthGroup,
 	ws wsport.Ws,
 ) *App {
 	return &App{
@@ -38,6 +40,7 @@ func NewApp(
 		responseMiddleware: responseMiddleware,
 		entityGroup:        entityGroup,
 		wsGroup:            wsGroup,
+		healthGroup:        healthGroup,
 		ws:                 ws,
 	}
 }
@@ -58,6 +61,7 @@ func (this *App) initGroups() {
 
 	this.entityGroup.RegisterRoutes(v1.Group("/entity"))
 	this.wsGroup.RegisterRoutes(v1.Group("/ws"))
+	this.healthGroup.RegisterRoutes(v1.Group("/health"))
 }
 
 func (this *App) Start() {
