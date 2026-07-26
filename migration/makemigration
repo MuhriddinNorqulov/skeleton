@@ -3,12 +3,12 @@ ATLASGO := atlas
 
 # makemigrations for development
 db-diff-dev:
-	@echo "Generating migration files..."
+	@echo "💻 Generating migration files..."
 	@$(ATLASGO) migrate diff --env gorm-dev
 
 # makemigrations for production
 db-diff-prod:
-	@echo "Generating migration files..."
+	@echo "💻 Generating migration files..."
 	@$(ATLASGO) migrate diff --env gorm-prod
 
 
