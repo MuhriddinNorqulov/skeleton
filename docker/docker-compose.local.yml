@@ -1,12 +1,12 @@
 services:
 
-  PROJECT_NAME-postgres:
+  skeleton-postgres:
     image: postgres:17
     container_name: PROJECT_NAME-postgres
     ports:
       - "5432:5432"
     env_file:
-      - ./../env/.env
+      - ./../.env
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -14,24 +14,29 @@ services:
     volumes:
       - ./.volumes/pg_data:/var/lib/postgresql/data
     networks:
-      - PROJECT_NAME-network
+      - skeleton-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}" ]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  PROJECT_NAME-redis:
+  skeleton-redis:
     image: redis:7.4
-    command: redis-server
-    container_name: PROJECT_NAME-redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    container_name: skeleton-redis
     ports:
       - "6379:6379"
     volumes:
       - ./.volumes/redis:/data
     networks:
-      - PROJECT_NAME-network
+      - skeleton-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
-  PROJECT_NAME-network:
+  skeleton-network:
     driver: bridge

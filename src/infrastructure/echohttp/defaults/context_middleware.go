@@ -1,7 +1,7 @@
 package defaults
 
 import (
-	"example.com/PROJECT_NAME/src/infrastructure/echohttp/context"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/echohttp/context"
 
 	"github.com/labstack/echo/v4"
 )

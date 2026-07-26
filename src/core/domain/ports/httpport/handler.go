@@ -1,6 +1,6 @@
 package httpport
 
-import "example.com/PROJECT_NAME/src/core/domain/ports/httpport/ctx"
+import "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/ctx"
 
 type HandlerFunc func(c ctx.Context) error
 

@@ -2,8 +2,8 @@ package services
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/ports/repository"
-	"example.com/PROJECT_NAME/src/core/domain/ports/unitofwork"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/repository"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/unitofwork"
 )
 
 type EntityService struct {

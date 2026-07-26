@@ -11,4 +11,4 @@ wire-build:
 
 docker-run.local:
 	@echo "Running Docker container..."
-	@cd docker && docker compose -f docker-compose.local.yml --env-file ./../env/.env up --build -d
+	@cd docker && docker compose -f docker-compose.local.yml --env-file ./../.env up --build -d

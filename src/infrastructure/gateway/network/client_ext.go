@@ -2,7 +2,7 @@ package network
 
 import (
 	"encoding/json"
-	"example.com/PROJECT_NAME/src/core/utils"
+	"github.com/muhriddinnorqulov/skeleton/src/core/utils"
 	"net/http"
 )
 

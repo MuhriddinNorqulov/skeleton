@@ -1,7 +1,7 @@
 package db
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/unitofwork"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/unitofwork"
 	"gorm.io/gorm"
 )
 

@@ -1,7 +1,7 @@
 package security
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/security"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/security"
 
 	"golang.org/x/crypto/bcrypt"
 )

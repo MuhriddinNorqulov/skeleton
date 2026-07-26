@@ -1,8 +1,8 @@
 package wire
 
 import (
-	"example.com/PROJECT_NAME/src/entrypoint/asynctask"
-	"example.com/PROJECT_NAME/src/entrypoint/http"
+	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/asynctask"
+	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http"
 
 	"github.com/google/wire"
 )

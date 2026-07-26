@@ -14,8 +14,8 @@ import (
 	"strings"
 	"time"
 
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/infrastructure/logger"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/logger"
 
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"

@@ -1,6 +1,6 @@
 package async
 
-import "example.com/PROJECT_NAME/src/core/domain/entity/enum"
+import "github.com/muhriddinnorqulov/skeleton/src/core/domain/entity/enum"
 
 type Task struct {
 	TaskID   string

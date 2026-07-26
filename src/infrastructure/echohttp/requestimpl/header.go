@@ -3,7 +3,7 @@ package requestimpl
 import (
 	"net/http"
 
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport/request"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/request"
 )
 
 type HeaderImpl struct {

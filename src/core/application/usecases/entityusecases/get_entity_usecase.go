@@ -2,8 +2,8 @@ package entityusecases
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/entity"
-	"example.com/PROJECT_NAME/src/core/domain/ports/repository"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/repository"
 )
 
 type GetEntityUseCase struct {

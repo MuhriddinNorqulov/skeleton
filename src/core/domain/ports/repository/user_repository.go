@@ -2,8 +2,8 @@ package repository
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/entity"
-	"example.com/PROJECT_NAME/src/core/domain/ports/unitofwork"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/unitofwork"
 )
 
 type UserRepository interface {

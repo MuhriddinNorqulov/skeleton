@@ -1,10 +1,10 @@
 package main
 
 import (
-	container "example.com/PROJECT_NAME/cmd/container"
+	container "github.com/muhriddinnorqulov/skeleton/cmd/container"
 )
 
-// @title PROJECT_NAME API
+// @title Skeleton API
 // @version 1.0
 // @BasePath /api/
 // @securityDefinitions.apikey BearerAuth

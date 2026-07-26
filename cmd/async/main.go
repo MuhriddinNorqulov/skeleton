@@ -1,6 +1,6 @@
 package main
 
-import container "example.com/PROJECT_NAME/cmd/container"
+import container "github.com/muhriddinnorqulov/skeleton/cmd/container"
 
 func main() {
 	app := container.InitAsyncApp()

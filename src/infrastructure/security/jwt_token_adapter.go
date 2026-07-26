@@ -2,10 +2,10 @@ package security
 
 import (
 	"errors"
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/core/domain/ports/security"
-	"example.com/PROJECT_NAME/src/core/utils"
-	"example.com/PROJECT_NAME/src/infrastructure/env"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/security"
+	"github.com/muhriddinnorqulov/skeleton/src/core/utils"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"

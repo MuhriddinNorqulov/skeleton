@@ -30,6 +30,9 @@ type Env struct {
 
 	StoragePath string `env:"STORAGE_PATH" envDefault:"storage"`
 	StorageURL  string `env:"STORAGE_URL,required"`
+
+	DevUsername string `env:"DEV_USERNAME" envDefault:"admin"`
+	DevPassword string `env:"DEV_PASSWORD" envDefault:"admin"`
 }
 
 // @inject
@@ -48,7 +51,7 @@ func parseEnv() *Env {
 
 func loadEnv() {
 	if os.Getenv("CONTAINER_MODE") != "1" {
-		_ = godotenv.Load("env/.env.local")
-		_ = godotenv.Load("env/.env")
+		_ = godotenv.Load(".env.local")
+		_ = godotenv.Load(".env")
 	}
 }

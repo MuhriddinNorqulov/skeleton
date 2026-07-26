@@ -1,9 +1,9 @@
 package groups
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport"
-	"example.com/PROJECT_NAME/src/core/domain/ports/wsport"
-	wshandlers "example.com/PROJECT_NAME/src/entrypoint/http/handlers/ws"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
+	wshandlers "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers/ws"
 )
 
 type WsGroup struct {

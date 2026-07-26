@@ -7,11 +7,11 @@ import (
 	"io"
 	"strings"
 
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/core/domain/entity"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport/ctx"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport/request"
-	"example.com/PROJECT_NAME/src/infrastructure/echohttp/requestimpl"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/ctx"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/request"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/echohttp/requestimpl"
 
 	"github.com/labstack/echo/v4"
 )

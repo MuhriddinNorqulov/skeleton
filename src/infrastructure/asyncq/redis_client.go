@@ -1,7 +1,7 @@
 package async
 
 import (
-	"example.com/PROJECT_NAME/src/infrastructure/env"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
 
 	"github.com/hibiken/asynq"
 )

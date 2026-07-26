@@ -1,0 +1,139 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Skeleton API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/api/",
+    "paths": {
+        "/v1/entity/create": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Entity"
+                ],
+                "summary": "Create entity",
+                "parameters": [
+                    {
+                        "description": "Entity data",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateEntityRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "payload": {
+                                            "$ref": "#/definitions/dto.CreateEntityResult"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.CreateEntityRequest": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 3
+                }
+            }
+        },
+        "dto.CreateEntityResult": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.Code": {
+            "type": "string",
+            "enum": [
+                "OK",
+                "NOT_FOUND",
+                "CONFLICT",
+                "BAD_REQUEST",
+                "UNAUTHORIZED",
+                "DATABASE_ERROR",
+                "GATEWAY_ERROR",
+                "INVALID_TOKEN",
+                "EXPIRED_TOKEN",
+                "FILE_ERROR",
+                "FORBIDDEN",
+                "ASYNC_ERROR"
+            ],
+            "x-enum-varnames": [
+                "CodeSuccess",
+                "CodeNotFound",
+                "CodeConflict",
+                "CodeBadRequest",
+                "CodeUnauthorized",
+                "CodeDatabaseError",
+                "CodeGatewayError",
+                "CodeInvalidToken",
+                "CodeExpiredToken",
+                "CodeFileError",
+                "CodeForbidden",
+                "CodeAsyncError"
+            ]
+        },
+        "response.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/definitions/response.Code"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "payload": {},
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BasicAuth": {
+            "type": "basic"
+        },
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

@@ -1,8 +1,8 @@
 package mapper
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport/ctx"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/ctx"
 
 	"github.com/labstack/echo/v4"
 )

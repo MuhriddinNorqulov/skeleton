@@ -270,7 +270,7 @@ Bu qoida `.golangci.yml` dagi `depguard` linter orqali avtomatik tekshiriladi.
 **Bu yerda bo'lmasligi kerak:** Import qilingan paketlar (GORM, Echo, va h.k.). Hech qanday
 tashqi kutubxonaga bog'liqlik yo'q. Faqat stdlib + `uuid` ruxsat etilgan.
 
-**Ruxsat etilgan import'lar:** stdlib, `github.com/google/uuid`, `example.com/PROJECT_NAME/src/core/domain/` ichidagi paketlar.
+**Ruxsat etilgan import'lar:** stdlib, `github.com/google/uuid`, `github.com/muhriddinnorqulov/skeleton/src/core/domain/` ichidagi paketlar.
 
 **Konvensiyalar:**
 - Fayl nomi: `<entity>_entity.go`
@@ -329,8 +329,8 @@ package repository
 
 import (
     "context"
-    "example.com/PROJECT_NAME/src/core/domain/entity"
-    "example.com/PROJECT_NAME/src/core/domain/ports/unitofwork"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/unitofwork"
 )
 
 type EntityRepository interface {
@@ -381,9 +381,9 @@ package usecases
 
 import (
     "context"
-    "example.com/PROJECT_NAME/src/core/domain/entity"
-    "example.com/PROJECT_NAME/src/core/domain/ports/repository"
-    "example.com/PROJECT_NAME/src/core/domain/ports/unitofwork"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/repository"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/unitofwork"
 )
 
 type CreateEntityUseCase struct {
@@ -432,8 +432,8 @@ package services
 
 import (
     "context"
-    "example.com/PROJECT_NAME/src/core/domain/ports/repository"
-    "example.com/PROJECT_NAME/src/core/domain/ports/unitofwork"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/repository"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/unitofwork"
 )
 
 type EntityService struct {
@@ -474,9 +474,9 @@ task'ni queue'ga yuboradi.
 package tasks
 
 import (
-    "example.com/PROJECT_NAME/src/core/domain/entity/enum"
-    "example.com/PROJECT_NAME/src/core/domain/ports/async"
-    "example.com/PROJECT_NAME/src/core/utils"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/entity/enum"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/async"
+    "github.com/muhriddinnorqulov/skeleton/src/core/utils"
     "time"
 )
 
@@ -557,9 +557,9 @@ package handlers
 
 import (
     "net/http"
-    "example.com/PROJECT_NAME/src/core/application/dto"
-    "example.com/PROJECT_NAME/src/core/application/usecases"
-    "example.com/PROJECT_NAME/src/core/domain/ports/httpport/ctx"
+    "github.com/muhriddinnorqulov/skeleton/src/core/application/dto"
+    "github.com/muhriddinnorqulov/skeleton/src/core/application/usecases"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/ctx"
 )
 
 type CreateEntityHandler struct {
@@ -601,9 +601,9 @@ func (this *CreateEntityHandler) Handle(c ctx.Context) error {
 package groups
 
 import (
-    "example.com/PROJECT_NAME/src/core/domain/ports/httpport"
-    "example.com/PROJECT_NAME/src/entrypoint/http/handlers"
-    "example.com/PROJECT_NAME/src/entrypoint/http/interceptor/permissions"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
+    "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/handlers"
+    "github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/interceptor/permissions"
 )
 
 type EntityGroup struct {
@@ -639,8 +639,8 @@ implement qiladi: `OnOpen`, `OnMessage`, `OnClose`.
 package ws
 
 import (
-    "example.com/PROJECT_NAME/src/core/application/usecases"
-    "example.com/PROJECT_NAME/src/core/domain/ports/wsport"
+    "github.com/muhriddinnorqulov/skeleton/src/core/application/usecases"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
 )
 
 type EntityWsHandler struct {
@@ -690,9 +690,9 @@ package handlers
 
 import (
     "context"
-    "example.com/PROJECT_NAME/src/core/application/usecases"
-    "example.com/PROJECT_NAME/src/core/domain/ports/async"
-    "example.com/PROJECT_NAME/src/core/utils"
+    "github.com/muhriddinnorqulov/skeleton/src/core/application/usecases"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/async"
+    "github.com/muhriddinnorqulov/skeleton/src/core/utils"
 )
 
 type ProcessEntityHandler struct {
@@ -759,11 +759,11 @@ package repository
 
 import (
     "context"
-    "example.com/PROJECT_NAME/src/core/domain/entity"
-    "example.com/PROJECT_NAME/src/core/domain/ports/repository"
-    "example.com/PROJECT_NAME/src/infrastructure/_errors"
-    "example.com/PROJECT_NAME/src/infrastructure/persistence/mapper"
-    "example.com/PROJECT_NAME/src/infrastructure/persistence/models"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/repository"
+    "github.com/muhriddinnorqulov/skeleton/src/infrastructure/_errors"
+    "github.com/muhriddinnorqulov/skeleton/src/infrastructure/persistence/mapper"
+    "github.com/muhriddinnorqulov/skeleton/src/infrastructure/persistence/models"
 )
 
 type EntityRepositoryImpl struct {
@@ -790,8 +790,8 @@ func (this *EntityRepositoryImpl) GetByID(ctx context.Context, id uint) (*entity
 package mapper
 
 import (
-    "example.com/PROJECT_NAME/src/core/domain/entity"
-    "example.com/PROJECT_NAME/src/infrastructure/persistence/models"
+    "github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+    "github.com/muhriddinnorqulov/skeleton/src/infrastructure/persistence/models"
 )
 
 func EntityModelToEntity(m *models.EntityModel) *entity.EntityNameEntity {
@@ -829,11 +829,11 @@ package gateway
 import (
     "context"
     "fmt"
-    "example.com/PROJECT_NAME/src/core/application/response"
-    gatewayport "example.com/PROJECT_NAME/src/core/domain/ports/gateway"
-    "example.com/PROJECT_NAME/src/core/utils"
-    "example.com/PROJECT_NAME/src/infrastructure/env"
-    "example.com/PROJECT_NAME/src/infrastructure/gateway/network"
+    "github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+    gatewayport "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/gateway"
+    "github.com/muhriddinnorqulov/skeleton/src/core/utils"
+    "github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
+    "github.com/muhriddinnorqulov/skeleton/src/infrastructure/gateway/network"
 )
 
 type ExternalGatewayImpl struct {

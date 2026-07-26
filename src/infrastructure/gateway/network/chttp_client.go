@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	"example.com/PROJECT_NAME/src/infrastructure/logger"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/logger"
 )
 
 type CHTTpClient struct {

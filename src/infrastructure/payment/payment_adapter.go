@@ -1,8 +1,8 @@
 package payment
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/payment"
-	"example.com/PROJECT_NAME/src/infrastructure/env"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/payment"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
 )
 
 type PaymentAdapter struct {

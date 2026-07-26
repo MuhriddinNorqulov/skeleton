@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/core/domain/ports/storage"
-	"example.com/PROJECT_NAME/src/core/utils"
-	"example.com/PROJECT_NAME/src/infrastructure/env"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/storage"
+	"github.com/muhriddinnorqulov/skeleton/src/core/utils"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
 )
 
 type LocalFileStorage struct {

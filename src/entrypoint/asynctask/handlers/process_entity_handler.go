@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/ports/async"
-	"example.com/PROJECT_NAME/src/core/utils"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/async"
+	"github.com/muhriddinnorqulov/skeleton/src/core/utils"
 )
 
 type ProcessEntityHandler struct {

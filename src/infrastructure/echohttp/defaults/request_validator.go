@@ -1,8 +1,8 @@
 package defaults
 
 import (
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
 
 	"github.com/go-playground/validator/v10"
 )

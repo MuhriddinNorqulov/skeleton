@@ -3,8 +3,8 @@ package middlewares
 import (
 	"fmt"
 
-	"example.com/PROJECT_NAME/src/core/domain/ports/wsport"
-	"example.com/PROJECT_NAME/src/infrastructure/logger"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/logger"
 
 	"go.uber.org/zap"
 )

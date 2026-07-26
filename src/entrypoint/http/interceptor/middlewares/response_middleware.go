@@ -2,9 +2,9 @@ package middlewares
 
 import (
 	"errors"
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport/ctx"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/ctx"
 )
 
 type ResponseMiddleware struct{}

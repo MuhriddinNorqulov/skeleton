@@ -1,0 +1,94 @@
+basePath: /api/
+definitions:
+  dto.CreateEntityRequest:
+    properties:
+      name:
+        minLength: 3
+        type: string
+    required:
+    - name
+    type: object
+  dto.CreateEntityResult:
+    properties:
+      id:
+        type: integer
+    type: object
+  response.Code:
+    enum:
+    - OK
+    - NOT_FOUND
+    - CONFLICT
+    - BAD_REQUEST
+    - UNAUTHORIZED
+    - DATABASE_ERROR
+    - GATEWAY_ERROR
+    - INVALID_TOKEN
+    - EXPIRED_TOKEN
+    - FILE_ERROR
+    - FORBIDDEN
+    - ASYNC_ERROR
+    type: string
+    x-enum-varnames:
+    - CodeSuccess
+    - CodeNotFound
+    - CodeConflict
+    - CodeBadRequest
+    - CodeUnauthorized
+    - CodeDatabaseError
+    - CodeGatewayError
+    - CodeInvalidToken
+    - CodeExpiredToken
+    - CodeFileError
+    - CodeForbidden
+    - CodeAsyncError
+  response.Response:
+    properties:
+      code:
+        $ref: '#/definitions/response.Code'
+      message:
+        type: string
+      payload: {}
+      success:
+        type: boolean
+    type: object
+info:
+  contact: {}
+  title: Skeleton API
+  version: "1.0"
+paths:
+  /v1/entity/create:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Entity data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateEntityRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                payload:
+                  $ref: '#/definitions/dto.CreateEntityResult'
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Create entity
+      tags:
+      - Entity
+securityDefinitions:
+  BasicAuth:
+    type: basic
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

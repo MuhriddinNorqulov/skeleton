@@ -1,9 +1,9 @@
 package echohttp
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport"
-	"example.com/PROJECT_NAME/src/core/domain/ports/wsport"
-	"example.com/PROJECT_NAME/src/infrastructure/echohttp/mapper"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/echohttp/mapper"
 
 	"github.com/labstack/echo/v4"
 )

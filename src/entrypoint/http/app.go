@@ -1,11 +1,11 @@
 package http
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport"
-	"example.com/PROJECT_NAME/src/core/domain/ports/wsport"
-	"example.com/PROJECT_NAME/src/entrypoint/http/groups"
-	"example.com/PROJECT_NAME/src/entrypoint/http/interceptor/middlewares"
-	"example.com/PROJECT_NAME/src/infrastructure/env"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
+	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/groups"
+	"github.com/muhriddinnorqulov/skeleton/src/entrypoint/http/interceptor/middlewares"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
 )
 
 type App struct {

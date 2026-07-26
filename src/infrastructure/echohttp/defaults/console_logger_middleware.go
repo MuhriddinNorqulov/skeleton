@@ -2,9 +2,9 @@ package defaults
 
 import (
 	"errors"
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/infrastructure/logger"
 	"fmt"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/logger"
 	"net/http"
 	"time"
 

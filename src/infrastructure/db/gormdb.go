@@ -1,8 +1,8 @@
 package db
 
 import (
-	"example.com/PROJECT_NAME/src/infrastructure/env"
 	"fmt"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

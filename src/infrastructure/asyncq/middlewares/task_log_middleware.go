@@ -2,9 +2,9 @@ package middlewares
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/ports/async"
-	"example.com/PROJECT_NAME/src/infrastructure/logger"
 	"fmt"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/async"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/logger"
 	"time"
 
 	"go.uber.org/zap"

@@ -2,8 +2,8 @@ package _errors
 
 import (
 	"errors"
-	"example.com/PROJECT_NAME/src/core/application/response"
-	"example.com/PROJECT_NAME/src/core/utils"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/response"
+	"github.com/muhriddinnorqulov/skeleton/src/core/utils"
 
 	"gorm.io/gorm"
 )

@@ -1,7 +1,7 @@
 package defaults
 
 import (
-	"example.com/PROJECT_NAME/src/infrastructure/logger"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/logger"
 	"net/http"
 	"runtime"
 

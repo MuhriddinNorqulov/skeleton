@@ -32,7 +32,7 @@ linters:
           allow:
             - "$gostd"
             - "github.com/google/uuid"
-            - "example.com/PROJECT_NAME/src/core/domain/"
+            - "github.com/muhriddinnorqulov/skeleton/src/core/domain/"
           deny:
             - pkg: "net/http"
               desc: "Domain must not depend on net/http; define a port interface"
@@ -60,11 +60,11 @@ linters:
           files:
             - "**/src/core/**"
           deny:
-            - pkg: "example.com/PROJECT_NAME/src/infrastructure"
+            - pkg: "github.com/muhriddinnorqulov/skeleton/src/infrastructure"
               desc: "Core must not import infrastructure; depend on domain ports"
-            - pkg: "example.com/PROJECT_NAME/src/infrastructure/"
+            - pkg: "github.com/muhriddinnorqulov/skeleton/src/infrastructure/"
               desc: "Core must not import infrastructure; depend on domain ports"
-            - pkg: "example.com/PROJECT_NAME/src/entrypoint"
+            - pkg: "github.com/muhriddinnorqulov/skeleton/src/entrypoint"
               desc: "Core must not import entrypoint layer"
-            - pkg: "example.com/PROJECT_NAME/src/entrypoint/"
+            - pkg: "github.com/muhriddinnorqulov/skeleton/src/entrypoint/"
               desc: "Core must not import entrypoint layer"

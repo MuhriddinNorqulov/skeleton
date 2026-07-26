@@ -1,10 +1,10 @@
 package entity
 
 import (
-	"example.com/PROJECT_NAME/src/core/application/dto"
-	"example.com/PROJECT_NAME/src/core/application/usecases/entityusecases"
-	entitypkg "example.com/PROJECT_NAME/src/core/domain/entity"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport/ctx"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/dto"
+	"github.com/muhriddinnorqulov/skeleton/src/core/application/usecases/entityusecases"
+	entitypkg "github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/ctx"
 	"net/http"
 )
 

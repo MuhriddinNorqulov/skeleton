@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"html/template"
 
-	"example.com/PROJECT_NAME/src/core/domain/ports/file"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/file"
 )
 
 type HtmlRendererImpl struct{}

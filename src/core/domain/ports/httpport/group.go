@@ -1,6 +1,6 @@
 package httpport
 
-import "example.com/PROJECT_NAME/src/core/domain/ports/wsport"
+import "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
 
 type Group interface {
 	Group(prefix string, middlewares ...Middleware) Group

@@ -1,7 +1,7 @@
 package env
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/config"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/config"
 	"time"
 )
 

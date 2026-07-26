@@ -2,8 +2,8 @@ package ctx
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/entity"
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport/request"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/entity"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport/request"
 	"io"
 	"mime/multipart"
 )

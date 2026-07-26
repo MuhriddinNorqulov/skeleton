@@ -2,7 +2,7 @@ package mapper
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/ports/async"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/async"
 
 	"github.com/hibiken/asynq"
 )

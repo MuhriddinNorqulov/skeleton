@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"time"
 
-	"example.com/PROJECT_NAME/src/core/domain/ports/wsport"
-	"example.com/PROJECT_NAME/src/infrastructure/gorillaws/middlewares"
-	"example.com/PROJECT_NAME/src/infrastructure/logger"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/gorillaws/middlewares"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/logger"
 
 	"github.com/google/uuid"
 )

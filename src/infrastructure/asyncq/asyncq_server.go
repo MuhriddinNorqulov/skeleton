@@ -2,9 +2,9 @@ package async
 
 import (
 	"context"
-	"example.com/PROJECT_NAME/src/core/domain/entity/enum"
-	"example.com/PROJECT_NAME/src/core/domain/ports/async"
-	"example.com/PROJECT_NAME/src/infrastructure/asyncq/mapper"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/entity/enum"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/async"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/asyncq/mapper"
 
 	"github.com/hibiken/asynq"
 )

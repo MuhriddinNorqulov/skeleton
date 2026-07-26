@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"example.com/PROJECT_NAME/src/core/domain/ports/wsport"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
 )
 
 type WsContext struct {

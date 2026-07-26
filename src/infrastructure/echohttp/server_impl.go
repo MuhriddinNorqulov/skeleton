@@ -1,10 +1,10 @@
 package echohttp
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/ports/httpport"
-	"example.com/PROJECT_NAME/src/infrastructure/echohttp/defaults"
-	"example.com/PROJECT_NAME/src/infrastructure/echohttp/mapper"
-	"example.com/PROJECT_NAME/src/infrastructure/env"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/httpport"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/echohttp/defaults"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/echohttp/mapper"
+	"github.com/muhriddinnorqulov/skeleton/src/infrastructure/env"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -18,27 +18,33 @@ func NewEcho(validator *defaults.RequestValidator) *echo.Echo {
 }
 
 type EchoServerImpl struct {
-	echo                    *echo.Echo
-	env                     *env.Env
-	recoveryMiddleware      *defaults.RecoveryMiddleware
-	httpLoggerMiddleware    *defaults.HttpLoggerMiddleware
-	consoleLoggerMiddleware *defaults.ConsoleLoggerMiddleware
+	echo                         *echo.Echo
+	env                          *env.Env
+	developmentGroup             *defaults.DevelopmentGroup
+	developerBasicAuthMiddleware *defaults.DeveloperBasicAuthMiddleware
+	recoveryMiddleware           *defaults.RecoveryMiddleware
+	httpLoggerMiddleware         *defaults.HttpLoggerMiddleware
+	consoleLoggerMiddleware      *defaults.ConsoleLoggerMiddleware
 }
 
 // @inject
 func NewEchoServerImpl(
 	echo *echo.Echo,
 	cfg *env.Env,
+	developmentGroup *defaults.DevelopmentGroup,
+	developerBasicAuthMiddleware *defaults.DeveloperBasicAuthMiddleware,
 	recoveryMiddleware *defaults.RecoveryMiddleware,
 	httpLoggerMiddleware *defaults.HttpLoggerMiddleware,
 	consoleLoggerMiddleware *defaults.ConsoleLoggerMiddleware,
 ) httpport.HTTPServer {
 	return &EchoServerImpl{
-		echo:                    echo,
-		env:                     cfg,
-		recoveryMiddleware:      recoveryMiddleware,
-		httpLoggerMiddleware:    httpLoggerMiddleware,
-		consoleLoggerMiddleware: consoleLoggerMiddleware,
+		echo:                         echo,
+		env:                          cfg,
+		developmentGroup:             developmentGroup,
+		developerBasicAuthMiddleware: developerBasicAuthMiddleware,
+		recoveryMiddleware:           recoveryMiddleware,
+		httpLoggerMiddleware:         httpLoggerMiddleware,
+		consoleLoggerMiddleware:      consoleLoggerMiddleware,
 	}
 }
 
@@ -69,4 +75,6 @@ func (this *EchoServerImpl) Init() {
 	this.echo.Use(this.httpLoggerMiddleware.Wrap)
 	this.echo.Use(this.recoveryMiddleware.Wrap)
 	this.echo.Use(defaults.ContextMiddleware)
+
+	this.developmentGroup.RegisterRoutes(this.echo.Group("/dev", this.developerBasicAuthMiddleware.Wrap))
 }

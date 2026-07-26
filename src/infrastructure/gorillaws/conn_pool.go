@@ -3,7 +3,7 @@ package gorillaws
 import (
 	"sync"
 
-	port "example.com/PROJECT_NAME/src/core/domain/ports/wsport"
+	port "github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/wsport"
 )
 
 type ConnectionStore struct {

@@ -1,9 +1,9 @@
 package tasks
 
 import (
-	"example.com/PROJECT_NAME/src/core/domain/entity/enum"
-	"example.com/PROJECT_NAME/src/core/domain/ports/async"
-	"example.com/PROJECT_NAME/src/core/utils"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/entity/enum"
+	"github.com/muhriddinnorqulov/skeleton/src/core/domain/ports/async"
+	"github.com/muhriddinnorqulov/skeleton/src/core/utils"
 	"time"
 )
 
